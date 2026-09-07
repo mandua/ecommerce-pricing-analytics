@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta
+            name="description"
+            content="PriceLabs provides pricing and customer analytics for a Gymshark-style ecommerce business using synthetic customer and product data."
+        >
+        <title>PriceLabs | Gymshark-Style Ecommerce Analytics</title>
+        <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="10" fill="%23101318"/><text x="32" y="39" text-anchor="middle" font-family="Arial" font-size="22" font-weight="700" fill="%234cc9f0">PL</text></svg>'>
+        <link rel="stylesheet" href="/assets/styles.css">
+        <script type="module" src="/assets/js/dashboard.js"></script>
+    </head>
+    <body>
+        <a class="skip-link" href="#main-content">Skip to main content</a>
+
+        <header class="site-header">
+            <nav class="top-nav" aria-label="Primary navigation">
+                <a class="brand" href="/" aria-label="PriceLabs home">
+                    <span class="brand-mark" aria-hidden="true">PL</span>
+                    <span>
+                        <strong>PriceLabs</strong>
+                        <small>Pricing and customer analytics for a Gymshark-style ecommerce business</small>
+                    </span>
+                </a>
+                <div class="nav-links" role="list">
+                    <button type="button" data-view-target="executive" class="active">Executive</button>
+                    <button type="button" data-view-target="products">Products</button>
+                    <button type="button" data-view-target="pricing">Pricing Lab</button>
+                    <button type="button" data-view-target="customers">Customers</button>
+                    <button type="button" data-view-target="experimentation">Experimentation</button>
+                    <button type="button" data-view-target="models">Models</button>
+                </div>
+            </nav>
+        </header>
+
+        <main id="main-content">
+            <section class="status-region" aria-live="polite">
+                <p id="app-status" class="status-message">Loading PriceLabs analytics...</p>
+            </section>
+
+            <section class="global-disclaimer">
+                <p id="project-disclaimer">
+                    PriceLabs is an independent portfolio project using synthetic
+                    Gymshark-style data. It is not affiliated with or endorsed by
+                    Gymshark.
+                </p>
+            </section>
+
+            <div id="app-shell" class="app-shell is-hidden">
+                <section class="filter-panel" aria-label="Dashboard filters">
+                    <div class="date-picker-field" data-date-picker="start">
+                        <span id="filter-start-date-label" class="date-picker-label">
+                            Start Date
+                        </span>
+                        <button
+                            id="filter-start-date-button"
+                            class="date-picker-button"
+                            type="button"
+                            aria-haspopup="dialog"
+                            aria-expanded="false"
+                            aria-controls="filter-start-date-calendar"
+                            aria-labelledby="filter-start-date-label filter-start-date-value"
+                        >
+                            <span id="filter-start-date-value">Loading</span>
+                            <span class="calendar-glyph" aria-hidden="true"></span>
+                        </button>
+                        <input id="filter-start-date" type="hidden">
+                        <div
+                            id="filter-start-date-calendar"
+                            class="calendar-popover"
+                            role="dialog"
+                            aria-label="Start Date calendar"
+                            hidden
+                        ></div>
+                    </div>
+                    <div class="date-picker-field" data-date-picker="end">
+                        <span id="filter-end-date-label" class="date-picker-label">
+                            End Date
+                        </span>
+                        <button
+                            id="filter-end-date-button"
+                            class="date-picker-button"
+                            type="button"
+                            aria-haspopup="dialog"
+                            aria-expanded="false"
+                            aria-controls="filter-end-date-calendar"
+                            aria-labelledby="filter-end-date-label filter-end-date-value"
+                        >
+                            <span id="filter-end-date-value">Loading</span>
+                            <span class="calendar-glyph" aria-hidden="true"></span>
+                        </button>
+                        <input id="filter-end-date" type="hidden">
+                        <div
+                            id="filter-end-date-calendar"
+                            class="calendar-popover"
+                            role="dialog"
+                            aria-label="End Date calendar"
+                            hidden
+                        ></div>
+                    </div>
+                    <label>
+                        Region
+                        <select id="filter-region"></select>
+                    </label>
+                    <label>
+                        Category
+                        <select id="filter-category"></select>
+                    </label>
+                    <p id="filter-scope-note" class="filter-scope-note">
+                        Filters apply to sales, orders, and customer scope where supported.
+                    </p>
+                </section>
+
+                <section data-view="executive" class="view active" aria-labelledby="executive-title">
+                    <section class="intro-band" aria-labelledby="page-title">
+                        <div>
+                            <p class="eyebrow">Executive Dashboard</p>
+                            <h1 id="page-title">PriceLabs</h1>
+                        </div>
+                        <p>
+                            Pricing and customer analytics for a Gymshark-style ecommerce
+                            business. Modeled around a Gymshark-style ecommerce business
+                            using synthetic customer and product data.
+                        </p>
+                    </section>
+                    <div class="view-heading">
+                        <h2 id="executive-title">Commercial Performance</h2>
+                        <p class="view-subtitle">
+                            High-level health across sales, margin, churn, orders, and funnel movement.
+                        </p>
+                    </div>
+                    <div id="executive-content"></div>
+                </section>
+
+                <section data-view="products" class="view" aria-labelledby="product-title">
+                    <div class="view-heading split-heading">
+                        <div>
+                            <p class="eyebrow">Product Analytics</p>
+                            <h2 id="product-title">SKU Economics</h2>
+                            <p class="view-subtitle">
+                                Product sales, margin, stockouts, and estimated local elasticity.
+                            </p>
+                        </div>
+                        <label class="select-control">
+                            Product
+                            <select id="product-selector"></select>
+                        </label>
+                    </div>
+                    <div id="product-content"></div>
+                </section>
+
+                <section data-view="pricing" class="view" aria-labelledby="pricing-title">
+                    <div class="view-heading split-heading">
+                        <div>
+                            <p class="eyebrow">Pricing Lab</p>
+                            <h2 id="pricing-title">Product-Level Price Simulation</h2>
+                            <p class="view-subtitle">
+                                Explore supported local price scenarios for one selected product.
+                            </p>
+                        </div>
+                        <label class="select-control">
+                            Product
+                            <select id="pricing-product-selector"></select>
+                        </label>
+                    </div>
+                    <section class="pricing-control-panel" aria-label="Selected price control">
+                        <div>
+                            <span>Selected price</span>
+                            <strong id="pricing-price-value">$0.00</strong>
+                            <small id="pricing-range-label">Supported range loading</small>
+                        </div>
+                        <input
+                            id="pricing-price-slider"
+                            class="price-slider"
+                            type="range"
+                            min="0"
+                            max="1"
+                            step="0.01"
+                            value="0"
+                        >
+                    </section>
+                    <div id="pricing-content"></div>
+                </section>
+
+                <section data-view="customers" class="view" aria-labelledby="customer-title">
+                    <div class="view-heading">
+                        <p class="eyebrow">Customer Analytics</p>
+                        <h2 id="customer-title">Customer Segment Health</h2>
+                        <p class="view-subtitle">
+                            Churn segments and repeat-purchase activity from the current customer scope.
+                        </p>
+                    </div>
+                    <div id="customer-content"></div>
+                </section>
+
+                <section data-view="experimentation" class="view" aria-labelledby="experimentation-title">
+                    <div class="view-heading">
+                        <p class="eyebrow">Experimentation</p>
+                        <h2 id="experimentation-title">Pricing Evidence Stack</h2>
+                        <p class="view-subtitle">
+                            Separate descriptive, experimental-style, causal, and predictive evidence.
+                        </p>
+                    </div>
+                    <div id="experimentation-content"></div>
+                </section>
+
+                <section data-view="models" class="view" aria-labelledby="model-title">
+                    <div class="view-heading">
+                        <p class="eyebrow">Model Performance</p>
+                        <h2 id="model-title">Churn Prediction Benchmark</h2>
+                        <p class="view-subtitle">
+                            Exploratory churn models with modest discrimination.
+                        </p>
+                    </div>
+                    <div id="model-content"></div>
+                </section>
+            </div>
+        </main>
+
+        <footer class="site-footer">
+            <p>
+                Built as a local portfolio analytics application using the
+                regenerated synthetic ecommerce datasets and product-level optimizer.
+            </p>
+        </footer>
+    </body>
+</html>
