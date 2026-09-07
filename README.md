@@ -105,6 +105,7 @@ notebooks/
   05_churn_model.ipynb
 
 requirements.txt            Runtime dependencies for the local web app
+render.yaml                 Render web-service deployment configuration
 README.md
 LICENSE
 ```
@@ -120,6 +121,24 @@ python3 -m uvicorn backend.app:app --reload --host 127.0.0.1 --port 8001
 Then open `http://127.0.0.1:8001`.
 
 If port `8001` is busy, replace it with another available port, such as `8002`.
+
+## Deploying On Render
+
+PriceLabs is deployable as a single Render web service because FastAPI serves both the API routes and the static frontend files.
+
+Build Command:
+
+```bash
+pip install -r requirements.txt
+```
+
+Start Command:
+
+```bash
+uvicorn backend.app:app --host 0.0.0.0 --port $PORT
+```
+
+The included `render.yaml` uses these commands and checks `/api/health` after deployment.
 
 ## Limitations
 
