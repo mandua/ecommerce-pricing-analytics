@@ -1,3 +1,6 @@
+# LIVE DEMO
+https://ecommerce-pricing-analytics.onrender.com/
+
 # PriceLabs
 
 ## Project Overview
